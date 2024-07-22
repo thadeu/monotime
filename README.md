@@ -1,5 +1,5 @@
 <p align="center">
-  <h1 align="center">🔃 monotime</h1>
+  <h1 align="center">⏰ monotime</h1>
   <p align="center"><i>Simple wrapper to use Time like as using in Rails framework</i></p>
 </p>
 
