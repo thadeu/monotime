@@ -12,14 +12,18 @@ const MOMENT_FORMATS = [
   moment.HTML5_FMT.DATETIME_LOCAL_MS,
 ]
 
-function timezone(date: null | Date | string | number = null, strict = false): Moment {
+function timezone(
+  date: null | Date | string | number = null,
+  strict = false,
+  tz: any = null,
+): Moment {
   const props: any = [date || Date.now()]
 
   if (strict) {
     props.push(MOMENT_FORMATS)
   }
 
-  props.push('America/Sao_Paulo')
+  props.push(tz)
 
   return moment.tz.apply(null, props)
 }

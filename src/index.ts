@@ -1,21 +1,37 @@
 import { timezone, Moment } from './timezone'
 
 export class Time {
-  static unix(date) {
-    if (!date) {
-      return timezone(new Date()).unix() * 1000
-    }
+  config?: {
+    tz?: string | null
+  } = {}
 
-    return timezone(date).unix() * 1000
+  constructor(options = { tz: null }) {
+    if (options?.tz) {
+      this.config.tz = options?.tz
+    }
   }
 
-  static parse(date): Moment {
+  private get adapter() {
+    return function (date = new Date(), strict = false) {
+      return timezone(date, strict, this?.config?.tz)
+    }
+  }
+
+  unix(date) {
+    if (!date) {
+      return this.adapter(new Date()).unix() * 1000
+    }
+
+    return this.adapter(date).unix() * 1000
+  }
+
+  parse(date): Moment {
     try {
       if (!date) {
-        return timezone(new Date())
+        return this.adapter(new Date())
       }
 
-      return timezone(date, true)
+      return this.adapter(date, true)
     } catch (error) {
       return date
     }
@@ -24,45 +40,45 @@ export class Time {
   /**
    * Use by Time.zone
    */
-  static get zone() {
-    return timezone(new Date())
+  get zone() {
+    return this.adapter(new Date())
   }
 
   /**
    * Use by Time.isoString
    */
-  static get isoString() {
+  get isoString() {
     return this.zone.toISOString(true)
   }
 
   /**
    * Use by Time.current
    */
-  static get current() {
+  get current() {
     return this.zone.format('HH:mm:ss')
   }
 
   /**
    * Use by Time.now
    */
-  static get now() {
+  get now() {
     return this.zone.format('HH:mm:ss')
   }
 
-  static get yesterday() {
+  get yesterday() {
     return this.zone.subtract(1, 'day')
   }
 
-  static get tomorrow() {
+  get tomorrow() {
     return this.zone.add(1, 'day')
   }
 
-  static isSameOrAfter(startTime, text) {
+  isSameOrAfter(startTime, text) {
     const [hour, minute, second] = text.split(':')
 
-    const start = timezone(startTime || new Date())
+    const start = this.adapter(startTime || new Date())
 
-    const end = timezone(new Date()).set({
+    const end = this.adapter(new Date()).set({
       hour: hour || '0',
       minute: minute || '0',
       second: second || '0',
@@ -71,12 +87,12 @@ export class Time {
     return start.isSameOrAfter(end, 'second')
   }
 
-  static isBefore(startTime, text) {
+  isBefore(startTime, text) {
     const [hour, minute, second] = text.split(':')
 
-    const start = timezone(startTime || new Date())
+    const start = this.adapter(startTime || new Date())
 
-    const end = timezone(new Date()).set({
+    const end = this.adapter(new Date()).set({
       hour: hour || '0',
       minute: minute || '0',
       second: second || '0',
@@ -85,12 +101,12 @@ export class Time {
     return start.isBefore(end, 'second')
   }
 
-  static isAfter(endTime, startTime) {
-    const start = timezone(startTime)
-    const end = timezone(endTime)
+  isAfter(endTime, startTime) {
+    const start = this.adapter(startTime)
+    const end = this.adapter(endTime)
 
     return end.isAfter(start, 'second')
   }
 }
 
-export default Time
+export default new Time()
