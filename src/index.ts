@@ -6,8 +6,8 @@ export class Time {
   } = {}
 
   constructor(options = { tz: null }) {
-    if (options?.tz) {
-      this.config.tz = options?.tz
+    if (options.tz) {
+      this.config.tz = options.tz
     }
   }
 
