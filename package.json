@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Utility methods to use Time like as using in Rails framework",
   "main": "src/index.ts",
-  "repository": "https://github.com/thadeu/ts-time",
+  "repository": "https://github.com/thadeu/monotime",
   "author": "thadeu <tadeuu@gmail.com>",
   "license": "MIT",
   "files": [
