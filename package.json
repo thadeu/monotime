@@ -1,6 +1,6 @@
 {
   "name": "@thadeu/monotime",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Utility methods to use Time like as using in Rails framework",
   "source": "src/index.ts",
   "main": "dist/index.js",
