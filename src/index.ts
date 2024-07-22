@@ -13,7 +13,7 @@ export class Time {
 
   private get adapter() {
     return function (date = new Date(), strict = false) {
-      return timezone(date, strict, this?.config?.tz)
+      return timezone(date, strict, this.config.tz)
     }
   }
 
