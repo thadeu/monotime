@@ -6,7 +6,13 @@
   "repository": "https://github.com/thadeu/ts-time",
   "author": "thadeu <tadeuu@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "test": "vitest run"
+  },
   "dependencies": {
     "moment-timezone": "^0.5.45"
+  },
+  "devDependencies": {
+    "vitest": "^2.0.4"
   }
 }
