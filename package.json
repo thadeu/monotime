@@ -2,7 +2,10 @@
   "name": "@thadeu/monotime",
   "version": "1.0.1",
   "description": "Utility methods to use Time like as using in Rails framework",
-  "main": "src/index.ts",
+  "source": "src/index.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "unpkg": "dist/index.js",
   "repository": "https://github.com/thadeu/monotime",
   "author": "thadeu <tadeuu@gmail.com>",
   "license": "MIT",
@@ -10,13 +13,6 @@
     "dist",
     "package.json"
   ],
-  "exports": {
-    ".": {
-      "require": "./dist/index.js",
-      "import": "./dist/index.mjs",
-      "types": "./dist/index.d.ts"
-    }
-  },
   "scripts": {
     "test": "vitest run",
     "build": "tsup ./src"
