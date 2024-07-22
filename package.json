@@ -1,5 +1,5 @@
 {
-  "name": "monotime",
+  "name": "@thadeu/monotime",
   "version": "1.0.0",
   "description": "Utility methods to use Time like as using in Rails framework",
   "main": "src/index.ts",
