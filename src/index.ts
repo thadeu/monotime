@@ -93,5 +93,4 @@ export class Time {
   }
 }
 
-export { Moment as Types }
 export default Time
