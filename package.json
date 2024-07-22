@@ -6,13 +6,28 @@
   "repository": "https://github.com/thadeu/ts-time",
   "author": "thadeu <tadeuu@gmail.com>",
   "license": "MIT",
+  "files": [
+    "dist",
+    "package.json"
+  ],
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "scripts": {
-    "test": "vitest run"
+    "test": "vitest run",
+    "build": "tsup ./src"
   },
   "dependencies": {
     "moment-timezone": "^0.5.45"
   },
   "devDependencies": {
+    "@types/node": "^20.14.11",
+    "tsup": "^8.2.2",
+    "typescript": "^5.5.3",
     "vitest": "^2.0.4"
   }
 }
