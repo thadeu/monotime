@@ -1,10 +1,10 @@
 {
   "name": "@thadeu/monotime",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Utility methods to use Time like as using in Rails framework",
   "source": "src/index.ts",
   "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "module": "dist/index.js",
   "unpkg": "dist/index.js",
   "repository": "https://github.com/thadeu/monotime",
   "author": "thadeu <tadeuu@gmail.com>",
