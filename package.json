@@ -1,6 +1,6 @@
 {
   "name": "@thadeu/monotime",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Utility methods to use Time like as using in Rails framework",
   "source": "src/index.ts",
   "main": "dist/index.js",
@@ -24,6 +24,7 @@
     "@types/node": "^20.14.11",
     "tsup": "^8.2.2",
     "typescript": "^5.5.3",
+    "vite-tsconfig-paths": "^4.3.2",
     "vitest": "^2.0.4"
   }
 }
