@@ -12,26 +12,30 @@ export class Time {
   }
 
   private get adapter() {
-    return function (date = new Date(), strict = false) {
+    return function (date = new Date(), strict = false, options = {}) {
+      if ('tz' in options) {
+        return timezone(date, strict, options.tz)
+      }
+
       return timezone(date, strict, this.config.tz)
     }
   }
 
-  unix(date) {
+  unix(date, options = {}): number {
     if (!date) {
-      return this.adapter(new Date()).unix() * 1000
+      return this.adapter(new Date(), false, options).unix() * 1000
     }
 
-    return this.adapter(date).unix() * 1000
+    return this.adapter(date, true, options).unix() * 1000
   }
 
-  parse(date): Moment {
+  parse(date, options = {}): Moment {
     try {
       if (!date) {
-        return this.adapter(new Date())
+        return this.adapter(new Date(), false, options)
       }
 
-      return this.adapter(date, true)
+      return this.adapter(date, true, options)
     } catch (error) {
       return date
     }
@@ -45,17 +49,17 @@ export class Time {
   }
 
   /**
+   * Use by Time.current
+   */
+  get current() {
+    return this.adapter(new Date())
+  }
+
+  /**
    * Use by Time.isoString
    */
   get isoString() {
     return this.zone.toISOString(true)
-  }
-
-  /**
-   * Use by Time.current
-   */
-  get current() {
-    return this.zone.format('HH:mm:ss')
   }
 
   /**

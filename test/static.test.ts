@@ -17,4 +17,15 @@ describe('Time', () => {
     Time.config.tz = null
     expect(expectedTime).toEqual(Time.zone.add(-3, 'hours').format('HH:mm:ss'))
   })
+
+  it('Time.parse with tz options', () => {
+    let time = '2024-07-23T15:50'
+    Time.config.tz = 'America/Sao_Paulo'
+
+    let date = Time.parse(time).toISOString()
+    expect(date).toEqual('2024-07-23T18:50:00.000Z')
+
+    let dateZone = Time.parse(time, { tz: null }).toISOString(true)
+    expect(dateZone).toEqual('2024-07-23T18:50:00.000+00:00')
+  })
 })
