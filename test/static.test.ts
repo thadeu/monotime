@@ -1,7 +1,11 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, beforeEach } from 'vitest'
 import Time from '@/index'
 
 describe('Time', () => {
+  beforeEach(() => {
+    Time.config.tz = null
+  })
+
   it('tz should be different another tz', () => {
     Time.config.tz = 'America/Sao_Paulo'
     let expectedTime = Time.now
@@ -35,7 +39,20 @@ describe('Time', () => {
     let date = Time.parse(time, { tz: 'America/Sao_Paulo' }).toISOString(true)
     expect(date).toEqual('2024-07-23T15:50:00.000-03:00')
 
-    let date2 = Time.parse(date, { tz: null })
+    let date2 = Time.parse(date, { tz: null }).toISOString(true)
     expect(date2).toEqual('2024-07-23T18:50:00.000+00:00')
+  })
+
+  it('Time.parse with tz options', () => {
+    let time = '23/07/2024 15:50'
+
+    let date = Time.parse(time, { tz: 'America/Sao_Paulo' })
+    expect(date.toISOString(true)).toEqual('2024-07-23T15:50:00.000-03:00')
+
+    let date2 = Time.parse(date.toISOString(true), { tz: null })
+    expect(date2.toISOString(true)).toEqual('2024-07-23T18:50:00.000+00:00')
+
+    let date3 = Time.parse(date2.toISOString(true))
+    expect(date3.toISOString(true)).toEqual('2024-07-23T18:50:00.000+00:00')
   })
 })
