@@ -30,12 +30,12 @@ describe('Time', () => {
   })
 
   it('Time.parse with tz options', () => {
-    let time = '2024-07-23T15:50'
+    let time = '23/07/2024 15:50'
 
     let date = Time.parse(time, { tz: 'America/Sao_Paulo' }).toISOString(true)
     expect(date).toEqual('2024-07-23T15:50:00.000-03:00')
 
-    let date2 = Time.parse(date, { tz: null }).toISOString(true)
+    let date2 = Time.parse(date, { tz: null })
     expect(date2).toEqual('2024-07-23T18:50:00.000+00:00')
   })
 })
